@@ -1,4 +1,3 @@
-SUPERKODERS DevStack
 ======
 
 Rozjetí projektu
