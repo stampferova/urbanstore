@@ -1,0 +1,265 @@
+{% extends 'layout/layout.njk' %}
+{% set pageTitle = 'Homepage' %}
+{% set isHomepage = true %}
+
+{% block content %}
+
+	<main role="main" id="main" class="main">
+		<div class="row-main">
+			<div class="banner" style="background-image: url({{ assets.images }}illust/banner-main.jpg">
+			</div>
+			<h1 class="u-text-center u-mb-3">Povánoční výprodej</h1>
+			<div class="grid">
+				<div class="grid__cell size--6-12@md size--4-12@lg u-mb-3">
+					<div class="item-icon">
+						<div class="item-icon__icon">
+							{{ iconSVG('Doprava') }}
+						</div>
+						<p>Doprava <b>zdarma</b> nad 1500 Kč</p>
+					</div>
+				</div>
+				<div class="grid__cell size--6-12@md size--4-12@lg u-mb-3">
+					<div class="item-icon">
+						<div class="item-icon__icon">
+							{{ iconSVG('package') }}
+						</div>
+						<p>Vše <b>skladem</b> odešleme do 48 hodin</p>
+					</div>
+				</div>
+				<div class="grid__cell size--6-12@md size--4-12@lg u-mb-3">
+					<div class="item-icon">
+						<div class="item-icon__icon">
+							{{ iconSVG('Item') }}
+						</div>
+						<p><b>Více než 1000 odběrných míst</b> po celé ČR a SR</p>
+					</div>
+				</div>
+			</div>
+
+			{% set categories = [
+				{
+					bg: 'illust/muzi-category.png',
+					title: 'Muži',
+					amount: '-70%'
+				},
+				{
+					bg: 'illust/zeny.png',
+					title: 'Ženy',
+					amount: '-70%'
+				},
+				{
+					bg: 'illust/deti.png',
+					title: 'Děti',
+					amount: '-70%'
+				}
+			] %}
+
+			<div class="grid grid--center">
+				{% for category in categories %}
+					<div class="grid__cell size--12-12 size--6-12@sm size--4-12@md">
+						{% include './components/category.njk' %}
+					</div>
+				{% endfor %}
+			</div>
+			<section class="u-mb-2">
+				<img src="{{ assets.images }}illust/group3.png">
+			</section>
+			<div class="sales u-mb-3" style="background-image: url({{ assets.images }}illust/banner.png")>
+				<div class="grid grid--space-between">
+					<div class="grid__cell size--7-12@md">
+						<h2 class="sales__heading">
+							<strong>Největší</strong> povánoční slevy
+						</h2>
+						<div class="grid">
+							{% for buton in range(0, 6) %}
+								<div class="grid__cell size--12-12 size--6-12@sm">
+									<a href="#" class="btn u-mb-2">
+										<span class="btn__text">
+											Button {{ loop.index }}
+										</span>
+									</a>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="grid__cell size--4-12@md u-text-center">
+						<p class="sales__tag">
+							#UrbanStory
+						</p>
+						<p class="sales__subheading">
+							Zazvonil zvonec&hellip;
+						</p>
+						<div class="grid grid--right">
+							<div class="grid__cell size--6-12@sm">
+								<a href="#" class="u-display-inline-block">
+									<img src="{{ assets.images }}illust/Popelka.png" class="sales__video">
+								</a>
+							</div>
+							<div class="grid__cell size--6-12@sm">
+								<a href="#" class="u-display-inline-block">
+									<img src="{{ assets.images }}illust/peklo.png" class="sales__video">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% set carousel = [
+				{
+					img: 'illust/shoes.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/deti.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/vans.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/superman.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/Bitmap.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/Bitmap2.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				},
+				{
+					img: 'illust/shoes.png',
+					title: 'Boty Converse One Star OX',
+					prev: '2399 Kč',
+					amount: '-20%',
+					price: '1919 Kč'
+				}
+			] %}
+			<h2 class="u-text-center u-mb-2">Oblíbené dárky</h2>
+			<section class="carousel u-mb-3">
+				<div class="prev">
+					<p class="carousel__prev"></p>
+				</div>
+				<ul data-slick>
+					{% for item in carousel %}
+						<li>
+							<article class="carousel__item">
+								<figure width="100%">
+									<img src="{{ assets.images }}{{ item.img }}" alt="" class="carousel__image">
+								</figure>
+								<p class="u-color-primary">{{ item.title }}</p>
+								<div class="grid">
+									<div class="grid__cell size--auto">
+										<p class="carousel__prev-price">{{ item.prev }}</p>
+									</div>
+									<div class="grid__cell size--auto">
+										<p class="u-color-muted">{{ item.amount }}</p>
+									</div>
+									<div class="grid__cell size--auto">
+										<p class="u-color-blue">
+											{{ item.price }}
+										</p>
+									</div>
+								</div>
+							</article>
+						</li>
+					{% endfor %}
+				</ul>
+				<div class="next">
+					<p class="carousel__next"></p>
+				</div>
+			</section>
+		</div>
+
+
+		<section class="subscribe u-mb-3">
+			<div class="row-main">
+				<div class="grid grid--space-between grid--center-lg ">
+					<div class="grid__cell size--12-12@sm size--auto@md">
+						<p class="subscribe__title">Přihlas se k odběru newsletteru</p>
+						<p class="u-text-small">
+							a už vám nikdy neunikne žádná nová kolekce nebo slevová akce. <br>
+							Navíc vám budeme posílat i zajímavé slevové kódy.
+						</p>
+					</div>
+					<div class="grid__cell size--6-12@md size--auto@lg">
+						<div class="grid grid--middle grid--center-lg">
+							<div class="grid__cell  no-gutter size--auto">
+								<input type="email" placeholder="vas@email.cz" class="subscribe__input  u-mb-2">
+							</div>
+							<div class="grid__cell  no-gutter size--auto">
+								<a class="subscribe__button  u-mb-2">Odeslat</a>
+							</div>
+						</div>
+						<p class="u-text-small">
+							Vaše e-mailová adresa je u nás v bezpečí, přečtěte si naše podmínky <a href="#" class="subscribe__link">zpracování osobních údajů.</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% set shoes = [
+			{
+				shoe: 'illust/Bitmap.png'
+			},
+			{
+				shoe: 'illust/shoes.png'
+			},
+			{
+				shoe: 'illust/Bitmap2.png'
+			},
+			{
+				shoe: 'illust/vans.png'
+			},
+			{
+				shoe: 'illust/superman.png'
+			}
+		] %}
+		<div class="row-main">
+			<section class="u-mb-3 u-text-center">
+				<h2>Sdílejte a inspirujte</h2>
+				<p class="u-text-small u-mb-3">
+					Navíc každý týden <a href="#">proplácíme jeden nákup</a> s hashtagem <b>#novekousky!</b>
+				</p>
+				<div class="grid grid--center-mobile">
+					{% for image in shoes %}
+						<div class="grid__cell size--auto">
+							<div class="u-mb-2 image__small" style="background-image: url({{ assets.images }}{{ image.shoe }})">
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+			<article class="u-mb-3">
+				<p class="u-color-primary u-mb-0">
+					Originální značkové oblečení, boty a doplňky za bezkonkurenční ceny
+				</p>
+				<p class="u-text-small">
+					<b>Značkové oblečení</b> niky nebylo dostupnější! UrbanStore.cz vám totiž přináší nepřebernou nabídku stylového značkového oblečení, bot a doplňků za bezkonkurenční ceny. Na své si ppřijdou milovníci elegantních, ležérních, streetových i sportovních kousků od těch <b>nejlepších světových značek.</b> Diesel, Replay? Converse, O'Neil, Vans, adidas, Nike - to je jen zlomek značek, které u nás koupíte za ty <b>nejlepší ceny.</b> Všechno značkové oblečení, boty a doplňky na UrbanStore.cz je <b>100% originál</b> a je <b>skladem</b> v ČR. Stop nakupování předraženého značkového oblečení - teď je tu UrbanStore.cz!
+				</p>
+			</article>
+		</div>
+	</main>
+
+{% endblock %}

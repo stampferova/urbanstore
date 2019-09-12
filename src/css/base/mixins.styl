@@ -1,0 +1,207 @@
+// Grid
+// $bps sample ('sm' 'md' 'lg' 'xl')
+generateGridSize($columns = $gridColumns, $bps = $breakpoints, $auto = true, $autoGrow = true)
+	if $auto
+		&--auto
+			flex 0 0 auto
+			width auto
+			max-width none
+	if $autoGrow
+		&--autogrow
+			flex 1 0 auto
+			width auto
+			max-width none
+	for $column in 1..$columns
+		&{'--' + $column + '-' + $columns}
+			flex-basis unit(100 / $columns * $column, '%')
+			max-width unit(100 / $columns * $column, '%')
+	for $bp in $bps
+		@media $MQ[$bp + 'Up']
+			if $auto
+				&--auto
+					+suffix($bp)
+						flex 0 0 auto
+						width auto
+						max-width none
+			if $autoGrow
+				&--autogrow
+					+suffix($bp)
+						flex 1 0 auto
+						width auto
+						max-width none
+			for $column in 1..$columns
+				&{'--' + $column + '-' + $columns}
+					+suffix($bp)
+						flex-basis unit(100 / $columns * $column, '%')
+						max-width unit(100 / $columns * $column, '%')
+
+generateGridSizeAuto()
+	&--auto
+		+generateBreakpoints()
+			flex 0 0 auto
+			width auto
+			max-width none
+
+generateGridSizeAutoGrow()
+	&--autogrow
+		+generateBreakpoints()
+			flex 1 1 auto
+			width auto
+			max-width none
+
+generateGridPush($columns = $gridColumns, $bps = $breakpoints)
+	for $column in 1..$columns
+		&{'--' + $column + '-' + $columns}
+			left unit(100 / $columns * $column, '%')
+	for $bp in $bps
+		@media $MQ[$bp + 'Up']
+			for $column in 1..$columns
+				&{'--' + $column + '-' + $columns}
+					+suffix($bp)
+						left unit(100 / $columns * $column, '%')
+
+generateGridPull($columns = $gridColumns, $bps = $breakpoints)
+	for $column in 1..$columns
+		&{'--' + $column + '-' + $columns}
+			left unit(-100 / $columns * $column, '%')
+	for $bp in $bps
+		@media $MQ[$bp + 'Up']
+			for $column in 1..$columns
+				&{'--' + $column + '-' + $columns}
+					+suffix($bp)
+						left unit(-100 / $columns * $column, '%')
+
+generateGridOrder($columns = $gridColumns, $bps = $breakpoints)
+	for $column in 1..$columns
+		&{'--' + $column}
+			order $column
+	for $bp in $bps
+		@media $MQ[$bp + 'Up']
+			for $column in 1..$columns
+				&{'--' + $column}
+					+suffix($bp)
+						order $column
+
+
+// Suffix
+suffix($suffix, $delimiter = '\@')
+	&{$delimiter + $suffix}
+		{block}
+
+
+/* Breakpoints */
+generateBreakpoints($bps = $breakpoints)
+	{block}
+	for $bp in $bps
+		@media $MQ[$bp + 'Up']
+			+suffix($bp)
+				{block}
+
+
+// Flexbox not supported
+no-flex()
+	.no-flexwrap &
+		{block}
+
+// Text Alignment and Transformation classes
+text-truncate()
+	overflow hidden
+	text-overflow ellipsis
+	white-space nowrap
+
+text-hide()
+	font 0/0 a
+	color transparent
+	text-decoration none
+
+// Clearfix
+clearfix()
+	&:before
+	&:after
+		content ''
+		display table
+	&:after
+		clear both
+
+ctx()
+	display table-cell
+	&:after
+		clear both
+		display block
+		visibility hidden
+		overflow hidden
+		height 0
+		line-height 0
+		font-size xx-large
+		content ' x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x '
+
+
+// Hiding content
+vhide()
+	position absolute
+	width 1px
+	height 1px
+	padding 0
+	margin -1px
+	overflow hidden
+	clip rect(0 0 0 0)
+	border 0
+
+
+// Size
+size($width = false, $height = false)
+	if unit($width) is ''
+		$width = unit($width, 'px')
+
+	if $height
+		if unit($height) is ''
+			$height = unit($height, 'px')
+		width $width
+		height $height
+	else
+		width $width
+		height $width
+
+// Triangle
+// @stylint off
+triangle($direction = 'down', $width = 10px, $height = 10px, $color = $colorText)
+	width 0
+	height 0
+	border-style solid
+	directions = {
+		up: {
+			border-width: 0 ($width * .5) $height ($width * .5),
+			border-color: transparent transparent $color transparent
+		},
+		down: {
+			border-width: $height ($width * .5) 0 ($width * .5),
+			border-color: $color transparent transparent transparent
+		},
+		left: {
+			border-width: ($height * .5) $width ($height * .5) 0,
+			border-color: transparent $color transparent transparent
+		},
+		right: {
+			border-width: ($height * .5) 0 ($height *.5) $width,
+			border-color: transparent transparent transparent $color
+		},
+		up-left: {
+			border-width: $height $width 0 0,
+			border-color: $color transparent transparent transparent
+		},
+		down-left: {
+			border-width: $width 0 0 $height,
+			border-color: transparent transparent transparent $color
+		},
+		up-right: {
+			border-width: 0 $width $height 0,
+			border-color: transparent $color transparent transparent
+		},
+		down-right: {
+			border-width: 0 0 $height $width,
+			border-color: transparent transparent $color transparent
+		}
+	}
+	styles = directions[$direction]
+	{styles}
+// @stylint on

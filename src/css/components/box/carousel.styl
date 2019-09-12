@@ -1,0 +1,58 @@
+.carousel
+	padding 0 40px
+	position relative
+
+	&__image
+		width 100%
+		min-height 180px
+		object-fit cover
+
+	&__prev-price
+		color $colorMuted
+		text-decoration line-through
+
+	&__prev,
+	&__next
+		border solid $colorMuted
+		border-width 0 4px 4px 0
+		display inline-block
+		padding 8px
+		position absolute
+		top 50%
+		left 50%
+
+	&__prev
+		transform translate(-50%, -50%) rotate(135deg)
+
+	&__next
+		transform translate(-50%, -50%) rotate(-45deg)
+
+	&__item
+		margin 0 5px
+
+	@media $MQ.mdDown
+		&__prev,
+		&__next
+			padding 4px
+
+
+.prev,
+.next
+	width 40px
+	background $colorGray
+	position absolute
+	top 0
+	bottom 0
+	cursor pointer
+	transition background-color $t
+
+.prev
+	left 0
+
+.next
+	right 0
+
+.prev:hover,
+.next:hover
+	background-color $colorPrimary
+

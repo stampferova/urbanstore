@@ -1,0 +1,13 @@
+.banner
+	width 100%
+	background-position center
+	background-size cover
+	background-repeat no-repeat
+	&::after
+		content ''
+		display block
+		padding-top 190px
+
+	@media $MQ.mdDown
+		&::after
+			padding-top 30%

@@ -1,0 +1,41 @@
+.sales
+	background-size cover
+	background-repeat no-repeat
+	background-position center
+	min-height 308px
+	padding 35px 25px 10px 50px
+
+	&__heading
+		font-size 40px
+		margin-bottom 27px
+		font-weight normal
+
+	&__video
+		max-width 120px
+		display inline-block
+
+	&__subheading
+		font-size 28px
+		color $colorRed
+
+	&__tag
+		font-size 18px
+		font-weight 600
+		color $colorMuted
+		margin-bottom 30px
+
+	@media $MQ.lgDown
+
+		&__subheading
+			color $colorMuted
+
+	@media $MQ.mdDown
+		text-align center
+		padding: 30px 20px
+
+		&__video
+			margin-bottom 10px
+
+		&__tag
+			margin-bottom 20px
+

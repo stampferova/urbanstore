@@ -1,0 +1,68 @@
+// colors
+$colorPrimary = #d3ac67
+$colorSecondary = #2a2a2a
+
+$colorBlack = #000
+$colorWhite = #fff
+$colorRed = #d0021b
+$colorGray = #4a4a4a
+$colorMuted = #9b9b9b
+
+$colorText = $colorWhite
+
+$colorBd = #ddd
+$colorBackground = $colorBlack
+
+$colorLink = #00b1d5
+$colorHover = $colorPrimary
+
+$colorFacebook = #3b5998
+$colorTwitter = #1da1f2
+$colorGoogle = #dd4b39
+$colorYoutube = #ff0000
+$colorLinkedIn = #0077b5
+$colorInstagram = #c13584
+$colorPinterest = #bd081c
+
+// font
+$fontPrimary = Open Sans, sans-serif
+$fontSecondary = $fontPrimary
+$fontSize = 14px
+$lineHeight = (20/14)
+
+// typography
+$typoSpaceVertical = 1em
+
+// grid
+$gridColumns = 12
+$gridGutter = 20px
+
+
+
+// row-main
+$rowMainWidth = 1040px
+$rowMainGutter = $gridGutter
+
+// path
+$img = data.assets.images
+$fonts = data.assets.fonts
+
+// transitions
+$t = .3s
+
+// media queries
+$mediaQueries = json('../media-queries.json', { hash: true })
+
+$MQ = {}
+$breakpoints = ''
+
+for $device, $bp in $mediaQueries.breakpoints
+	$MQ[$device + 'Up'] = s('(min-width: %spx)', $bp)
+	$MQ[$device + 'Down'] = s('(max-width: %spx)', ($bp - 1))
+
+	push($breakpoints, $device)
+
+shift($breakpoints) // Hack
+
+for $device, $rule in $mediaQueries.rules
+	$MQ[$device] = $rule

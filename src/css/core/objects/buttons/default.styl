@@ -1,0 +1,41 @@
+.btn
+	$s = selector()
+	display inline-block
+	vertical-align middle
+	margin 0
+	padding 0
+	border 0
+	background none
+	text-decoration none
+	font-family inherit
+	&__text
+		position relative
+		display block
+		padding 10px 72px
+		font-size 14px
+		font-weight 600
+		line-height normal
+		background $colorWhite
+		color $colorGray
+		text-decoration none
+		text-transform uppercase
+		text-align center
+		transition background $t, border-color $t, color $t
+
+	// VARIANTS
+
+	// STATES
+	&:disabled
+	&.is-disabled
+		opacity .5
+		pointer-events none
+
+	// hovers
+	.no-touchevents &:hover &__text
+		background $colorHover
+		color #fff
+
+	@media $MQ.lgDown
+
+		&__text
+			padding 8px 40px

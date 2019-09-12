@@ -1,0 +1,22 @@
+$inp
+	display block
+	border 1px solid $colorBd
+	padding 8px 15px
+	background $colorWhite
+	color $colorText
+	font-family inherit
+	font-size 1rem
+	line-height 20px
+	width 100%
+	border-radius 0
+	appearance none
+	transition background $t, border-color $t
+
+	// STATES
+	&:disabled
+		background $colorBg
+	&:focus
+		border-color $colorText
+
+	.has-error &
+		border-color $colorRed
