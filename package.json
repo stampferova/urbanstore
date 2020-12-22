@@ -41,7 +41,7 @@
     "gulp-w3cjs": "^1.2.0",
     "gulp-zip": "^4.0.0",
     "gulp.spritesmith": "^6.4.0",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "poststylus": "^1.0.0",
     "require-dir": "^1.0.0",
     "run-sequence": "^2.2.1",
